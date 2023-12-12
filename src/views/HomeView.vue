@@ -5,14 +5,16 @@
             <input type="date" id="date" name="date" v-model="form.date">
             <label for="amount">Amount of Participants:</label>
             <input type="number" id="amount" name="amount" v-model="form.amount">
-            <save-button @click="$emit('changeView', 'BookingView')"/>
+            <save-button />
         </form>
     </div>
 </template>
 
 <script setup>
 import SaveButton from "@/components/SubmitButton.vue";
-import {reactive} from "vue";
+import {reactive, defineEmits} from "vue";
+
+const emit = defineEmits(['changeView'])
 
 const state = reactive({
     data: null,
@@ -27,16 +29,17 @@ function submit() {
     fetchrooms();
 }
 
-async function fetchrooms() {
+function fetchrooms() {
     try { 
-        await fetch(`http://localhost:8000/api/meetingtimes?date=${form.date}&amount=${form.amount}`, {
+        fetch(`http://localhost:8000/api/meetingtimes?date=${form.date}&amount=${form.amount}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
         }).then(res => {
             state.data = res.json();
-            return res;
+            emit('changeView', 'BookingView', state.data)
+            return state.data;
         })
     } catch (error) {
         console.log(error)

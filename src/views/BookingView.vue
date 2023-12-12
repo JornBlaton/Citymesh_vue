@@ -1,1 +1,5 @@
-<template><div></div></template>
+<template>
+    <div>
+        <button @click="$emit('changeView', 'HomeView')">Back</button>
+    </div>
+</template>

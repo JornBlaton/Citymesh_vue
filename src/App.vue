@@ -3,7 +3,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import HomeView from '@/views/HomeView.vue'
 import BookingView from '@/views/BookingView.vue'
 import RoomView from '@/views/RoomView.vue'
@@ -17,7 +17,13 @@ const tabs = {
   RoomView
 }
 
-function changeView(page) {
+const state = reactive({
+    data: null,
+})
+
+function changeView(page, data) {
   currentTab.value = page
+  state.data = data
+  console.log(data)
 }
 </script>
