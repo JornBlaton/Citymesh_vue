@@ -5,7 +5,7 @@
             <input type="date" id="date" name="date" v-model="form.date">
             <label for="amount">Amount of Participants:</label>
             <input type="number" id="amount" name="amount" v-model="form.amount">
-            <save-button/>
+            <save-button @click="$emit('changeView', 'BookingView')"/>
         </form>
     </div>
 </template>
@@ -25,7 +25,6 @@ const form = reactive({
 
 function submit() {
     fetchrooms();
-    console.log(state.data)
 }
 
 async function fetchrooms() {
