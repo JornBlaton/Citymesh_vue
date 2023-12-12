@@ -14,12 +14,34 @@
 import SaveButton from "@/components/SubmitButton.vue";
 import {reactive} from "vue";
 
+const state = reactive({
+    data: null,
+})
+
 const form = reactive({
     date: null,
     amount: 0
 });
 
 function submit() {
-    console.log(form)
+    fetchrooms();
+    console.log(state.data)
 }
+
+async function fetchrooms() {
+    try { 
+        await fetch(`http://localhost:8000/api/meetingtimes?date=${form.date}&amount=${form.amount}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        }).then(res => {
+            state.data = res.json();
+            return res;
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 </script>
