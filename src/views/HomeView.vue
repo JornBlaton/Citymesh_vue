@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <form @submit.prevent="submit" class="flex flex-col mt-3 ml-5 mr-5">
-      <label for="date">Select Date:</label>
-      <input type="date" id="date" name="date" v-model="form.date" />
-      <label for="amount">Amount of Participants:</label>
-      <input type="number" id="amount" name="amount" v-model="form.amount" />
-      <save-button />
+  <div class="mt-10 ml-10 border-2 w-fit p-2">
+    <form @submit.prevent="submit" class="flex flex-col">
+      <label for="date" class="mr-2">Select Date:</label>
+      <input type="date" id="date" name="date" v-model="form.date" class="border-2 border-black rounded-md"/>
+      <label for="amount" class="mr-2">Amount of Participants:</label>
+      <input type="number" id="amount" name="amount" v-model="form.amount" class="border-2 border-black rounded-md"/>
+      <save-button/>
     </form>
   </div>
 </template>
