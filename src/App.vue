@@ -1,5 +1,5 @@
 <template>
-   <component :is="tabs[currentTab]" @changeView="changeView"/>
+   <component :is="tabs[currentTab]" @changeView="changeView" :meetingdata="state.data"/>
 </template>
 
 <script setup>

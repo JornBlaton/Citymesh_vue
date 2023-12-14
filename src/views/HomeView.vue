@@ -29,17 +29,20 @@ function submit() {
     fetchrooms();
 }
 
-function fetchrooms() {
+async function fetchrooms() {
     try { 
-        fetch(`http://localhost:8000/api/meetingtimes?date=${form.date}&amount=${form.amount}`, {
+        await fetch(`http://localhost:8000/api/meetingtimes?date=${form.date}&amount=${form.amount}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
         }).then(res => {
-            state.data = res.json();
+            return res.json();
+        })
+        .then(resdata => {
+            state.data = resdata
             emit('changeView', 'BookingView', state.data)
-            return state.data;
+            console.log(resdata)
         })
     } catch (error) {
         console.log(error)
