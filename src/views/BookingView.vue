@@ -11,7 +11,7 @@
     <div class="m-10">
       <div id="bookingcontainer">
         <div v-for="item in props.meetingdata" :key="item.id" class="border-2 border-black rounded-md mb-2 p-1">
-          <p>Room_id: {{ item.room }}</p>
+          <p>Room: {{ item.room_name }}</p>
           <p>Booked for: {{ item.person }}</p>
           <p>Starting time:{{ item.timestamp_start }}</p>
           <p>Ending time: {{ item.timestamp_end }}</p>
